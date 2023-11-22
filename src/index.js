@@ -5,48 +5,140 @@
     const detailRamenRestName = document.getElementsByClassName('restaurant')[0]
     const detailRamenRating = document.getElementById('rating-display')
     const detailRamenComment = document.getElementById('comment-display')
+//forms
+const ramenForm = document.querySelector('#new-ramen')  
+const newNameElement = document.getElementById('new-name')
+const newRestaurantElement = document.getElementById('new-restaurant')
+const newImageElement = document.getElementById('new-image')
+const newRatingElement = document.getElementById('new-rating')
+ const newCommentElement = document.getElementById('new-comment')
 
-fetch('http://127.0.0.1:4002/ramens')
+
+
+
+fetch('http://127.0.0.1:3000/ramens')
 .then(resp => resp.json())
-.then(ramens => {
-
-    displayRamenDetails(ramens[0])
-
-    ramens.forEach(ramen => {
-        const ramenMenuElement = document.getElementById('ramen-menu')
-        const ramenImg = document.createElement('img')
-        ramenImg.src = ramen.image
-        ramenMenuElement.appendChild(ramenImg)
-
-        ramenImg.addEventListener('click', () => {
-            displayRamenDetails(ramen)
+.then(ramenData => {
+        ramenData.map(eachRamen => {         //1 creating individual ramen image in menu
+            displayRamenMenu(eachRamen)
         })
-        
+
+
+        displayRamenDetail(ramenData[0])
+})
+
+//1 refactored into global scope
+const displayRamenMenu = (ramen) =>{
+    const ramenImg = document.createElement('img')
+    const ramenMenu = document.getElementById('ramen-menu')
+    ramenImg.src = ramen.image
+    ramenMenu.appendChild(ramenImg)
+
+    //deliverable 2. we have access to ramenImg here, so add click eventlistner here. This event will result in displaying ramen details when ramen images are clicked
+    ramenImg.addEventListener('click', (e) => {
+        displayRamenDetail(ramen)
     })
-    function displayRamenDetails(ramen){
-    
+
+
+
+}
+// 2 refactored displaying ramen detail
+const displayRamenDetail = (ramen) => {
     detailRamenImage.src = ramen.image
     detailRamenName.textContent = ramen.name
     detailRamenRestName.textContent = ramen.restaurant
     detailRamenRating.textContent = ramen.rating
     detailRamenComment.textContent = ramen.comment
+}
+
+
+//challenge 3 FORM
+// 1. select html form 
+    // 2. select input element or with submit event, we can retrieve event values
+    // 3. add eventlistner 
+    // 4. get the new ramen Ob
+    // 5. send that obj to the menu
+ // we can select each input box or use
+ ramenForm.addEventListener('submit', (e) =>{
+    e.preventDefault()
+    
+    let newRamen = {
+        "name": e.target['new-name'].value,
+        "restaurant": e.target['new-restaurant'].value,
+        "image": e.target['new-image'].value,
+        "rating": e.target['new-rating'].value,
+        "comment": e.target['new-comment'].value
     }
 
-    
-    const newRamenForm = document.getElementById('new-ramen')
-    newRamenForm.addEventListener('submit', (e) => {
-        e.preventDefault()
-        console.log('hello')
+    displayRamenMenu(newRamen)
+    ramenForm.reset()
+ })
 
-        const newRamendata = {
-            name: name.image,
-            restaurant:
-        }
-    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//     displayRamenDetails(ramens[0])
+
+//     ramens.forEach(ramen => {
+//         displayRamenMenu(ramen)
+//         const ramenMenuElement = document.getElementById('ramen-menu')
+//         const ramenImg = document.createElement('img')
+//         ramenImg.src = ramen.image
+//         ramenMenuElement.appendChild(ramenImg)
+
+//         ramenImg.addEventListener('click', () => {
+//             displayRamenDetails(ramen)
+//         })
+        
+//     })
+//     function displayRamenDetails(ramen){
+    
+//     detailRamenImage.src = ramen.image
+//     detailRamenName.textContent = ramen.name
+//     detailRamenRestName.textContent = ramen.restaurant
+//     detailRamenRating.textContent = ramen.rating
+//     detailRamenComment.textContent = ramen.comment
+//     }
+
+    
+//     const newRamenForm = document.getElementById('new-ramen')
+//     newRamenForm.addEventListener('submit', (e) => {
+//         e.preventDefault()
+
+//         const newNameElement = document.getElementById('new-name')
+//         const newRestaurantElement = document.getElementById('new-restaurant')
+//         const newImageElement = document.getElementById('new-image')
+//         const newRatingElement = document.getElementById('new-rating')
+//         const newCommentElement = document.getElementById('new-comment')
+        
+//         const newRamenData = {
+//             Name: newNameElement.value,
+//             Restaurant: newRestaurantElement.value,
+//             Image: newImageElement.value,
+//             Rating: newRatingElement.value,
+//             Comment: newCommentElement.value
+//         }
+     
+
+//         //select form elements.value etc
+      
+//     })
 
 
     
   
     
 
-})
+// })
