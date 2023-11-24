@@ -1,5 +1,6 @@
 // write your code here
 
+
     const detailRamenImage = document.getElementsByClassName('detail-image')[0]   
     const detailRamenName = document.getElementsByClassName('name')[0]
     const detailRamenRestName = document.getElementsByClassName('restaurant')[0]
@@ -63,8 +64,8 @@ const displayRamenDetail = (ramen) => {
     e.preventDefault()
     
     let newRamen = {
-        "name": e.target['new-name'].value,
-        "restaurant": e.target['new-restaurant'].value,
+        "name": newNameElement.value,
+        "restaurant": newRestaurantElement.value,
         "image": e.target['new-image'].value,
         "rating": e.target['new-rating'].value,
         "comment": e.target['new-comment'].value
@@ -89,56 +90,56 @@ const displayRamenDetail = (ramen) => {
 
 
 
-//     displayRamenDetails(ramens[0])
+// //     displayRamenDetails(ramens[0])
 
-//     ramens.forEach(ramen => {
-//         displayRamenMenu(ramen)
-//         const ramenMenuElement = document.getElementById('ramen-menu')
-//         const ramenImg = document.createElement('img')
-//         ramenImg.src = ramen.image
-//         ramenMenuElement.appendChild(ramenImg)
+// //     ramens.forEach(ramen => {
+// //         displayRamenMenu(ramen)
+// //         const ramenMenuElement = document.getElementById('ramen-menu')
+// //         const ramenImg = document.createElement('img')
+// //         ramenImg.src = ramen.image
+// //         ramenMenuElement.appendChild(ramenImg)
 
-//         ramenImg.addEventListener('click', () => {
-//             displayRamenDetails(ramen)
-//         })
+// //         ramenImg.addEventListener('click', () => {
+// //             displayRamenDetails(ramen)
+// //         })
         
-//     })
-//     function displayRamenDetails(ramen){
+// //     })
+// //     function displayRamenDetails(ramen){
     
-//     detailRamenImage.src = ramen.image
-//     detailRamenName.textContent = ramen.name
-//     detailRamenRestName.textContent = ramen.restaurant
-//     detailRamenRating.textContent = ramen.rating
-//     detailRamenComment.textContent = ramen.comment
-//     }
+// //     detailRamenImage.src = ramen.image
+// //     detailRamenName.textContent = ramen.name
+// //     detailRamenRestName.textContent = ramen.restaurant
+// //     detailRamenRating.textContent = ramen.rating
+// //     detailRamenComment.textContent = ramen.comment
+// //     }
 
     
-//     const newRamenForm = document.getElementById('new-ramen')
-//     newRamenForm.addEventListener('submit', (e) => {
-//         e.preventDefault()
+// //     const newRamenForm = document.getElementById('new-ramen')
+// //     newRamenForm.addEventListener('submit', (e) => {
+// //         e.preventDefault()
 
-//         const newNameElement = document.getElementById('new-name')
-//         const newRestaurantElement = document.getElementById('new-restaurant')
-//         const newImageElement = document.getElementById('new-image')
-//         const newRatingElement = document.getElementById('new-rating')
-//         const newCommentElement = document.getElementById('new-comment')
+// //         const newNameElement = document.getElementById('new-name')
+// //         const newRestaurantElement = document.getElementById('new-restaurant')
+// //         const newImageElement = document.getElementById('new-image')
+// //         const newRatingElement = document.getElementById('new-rating')
+// //         const newCommentElement = document.getElementById('new-comment')
         
-//         const newRamenData = {
-//             Name: newNameElement.value,
-//             Restaurant: newRestaurantElement.value,
-//             Image: newImageElement.value,
-//             Rating: newRatingElement.value,
-//             Comment: newCommentElement.value
-//         }
+// //         const newRamenData = {
+// //             Name: newNameElement.value,
+// //             Restaurant: newRestaurantElement.value,
+// //             Image: newImageElement.value,
+// //             Rating: newRatingElement.value,
+// //             Comment: newCommentElement.value
+// //         }
      
 
-//         //select form elements.value etc
+// //         //select form elements.value etc
       
-//     })
+// //     })
 
 
     
   
     
 
-// })
+// // })
