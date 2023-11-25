@@ -3,54 +3,49 @@
 fetch('http://127.0.0.1:3000/ramens')
 .then(resp => resp.json())
 .then(ramenList => {
-
+    
+    //1
     ramenList.forEach(ramen => {
-        displayRamen(ramen)
+        displayMenu(ramen)
+       
+        //click event listener on images
+        
+        })
+
+        
+        displayRamenDetail(ramenList[0])
+
 
     })
+    //2
 
-   
+    
+     const newRamenForm = document.getElementById('new-ramen')
+     newRamenForm.addEventListener('submit', e => {
+         e.preventDefault()
 
+         const newName = document.getElementById('new-name')
+         const newImage = document.getElementById('new-image')
+         const newRating = document.getElementById('new-rating')
+         const newComment = document.getElementById('new-comment')
 
-
-   
-
-const newRamenForm = document.getElementById('new-ramen')
-newRamenForm.addEventListener('submit', e => {
-    e.preventDefault()
-
-    const newNameElement = document.getElementById('new-name')
-    const newRestaurantElement = document.getElementById('new-restaurant')
-    const newImageElement = document.getElementById('new-image')
-    const newRatingElement = document.getElementById('new-rating')
-    const newCommentElement = document.getElementById('new-comment')
-
-    let newFood = {               //key is case sensitive, must be exactly same as data we fetched from server. name not Name  can be in global scope or wiehin 2nd .then
-        name: newNameElement.value,
-        restaurant: newRestaurantElement.value,
-        image: newImageElement.value,
-        rating: newRatingElement.value,
-        comment: newCommentElement.value
-    }
-    displayRamen(newFood)
-})
-
-})
+         const newRamenObject = {
+             name: newName.value,
+             image: newImage.value,
+             rating: newRating.value,
+             comment: newComment.value
+         }
+         displayMenu(newRamenObject)
+         
+         
+         
+     })
 
 
 
 
 
 
-function displayRamen(ramen){
-    const imgElement = document.createElement('img')
-    const ramenMenu = document.getElementById('ramen-menu')
-    imgElement.src = ramen.image
-    ramenMenu.appendChild(imgElement)
-    imgElement.addEventListener('click', e => {
-        displayRamenDetail(ramen)
-    })
-}
 
 
 function displayRamenDetail(ramen){
@@ -65,9 +60,139 @@ function displayRamenDetail(ramen){
     detailRestaurant.textContent = ramen.restaurant
     detailRating.textContent = ramen.rating
     detailComment.textContent = ramen.comment
+    }
 
-    console.log('displayRamen called')
+    function displayMenu(ramen){
+    const imgElement = document.createElement('img')
+    const ramenMenu = document.getElementById('ramen-menu')
+    imgElement.src = ramen.image
+    ramenMenu.appendChild(imgElement)
+
+    imgElement.addEventListener('click', e => {
+        displayRamenDetail(ramen)
+    })
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// fetch('http://127.0.0.1:3000/ramens')
+// .then(resp => resp.json())
+// .then(ramenList => {
+
+//     ramenList.forEach(ramen => {
+//         displayRamen(ramen)
+
+//     })
+
+   
+
+
+
+   
+
+// const newRamenForm = document.getElementById('new-ramen')
+// newRamenForm.addEventListener('submit', e => {
+//     e.preventDefault()
+
+//     const newNameElement = document.getElementById('new-name')
+//     const newRestaurantElement = document.getElementById('new-restaurant')
+//     const newImageElement = document.getElementById('new-image')
+//     const newRatingElement = document.getElementById('new-rating')
+//     const newCommentElement = document.getElementById('new-comment')
+
+//     let newFood = {               //key is case sensitive, must be exactly same as data we fetched from server. name not Name  can be in global scope or wiehin 2nd .then
+//         name: newNameElement.value,
+//         restaurant: newRestaurantElement.value,
+//         image: newImageElement.value,
+//         rating: newRatingElement.value,
+//         comment: newCommentElement.value
+//     }
+//     displayRamen(newFood)
+// })
+
+// })
+
+
+
+
+
+
+// function displayRamen(ramen){
+//     const imgElement = document.createElement('img')
+//     const ramenMenu = document.getElementById('ramen-menu')
+//     imgElement.src = ramen.image
+//     ramenMenu.appendChild(imgElement)
+//     imgElement.addEventListener('click', e => {
+//         displayRamenDetail(ramen)
+//     })
+// }
+
+
+// function displayRamenDetail(ramen){
+//     const detailImage = document.querySelector('.detail-image')
+//     const detailName = document.querySelector('.name')
+//     const detailRestaurant = document.querySelector('.restaurant')
+//     const detailRating = document.getElementById('rating-display')
+//     const detailComment = document.getElementById('comment-display')
+
+//     detailImage.src = ramen.image
+//     detailName.textContent = ramen.name
+//     detailRestaurant.textContent = ramen.restaurant
+//     detailRating.textContent = ramen.rating
+//     detailComment.textContent = ramen.comment
+
+//     console.log('displayRamen called')
+// }
 
 
 
