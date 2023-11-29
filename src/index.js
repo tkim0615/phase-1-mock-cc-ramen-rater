@@ -11,8 +11,9 @@ fetch('http://127.0.0.1:4000/ramens')
         ramenList.forEach(ramen => {
             displayImageInMenu(ramen)
         })
-        addNewRamen()
-    })  
+        
+    }) 
+    addNewRamen() 
 
 function displayImageInMenu(soup){
     const ramenImgElement = document.createElement('img')
