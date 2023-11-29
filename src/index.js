@@ -1,45 +1,129 @@
-
-
-fetch('http://127.0.0.1:3000/ramens')
-.then(resp => resp.json())
-.then(ramenList => {
-    
-    //1
-    ramenList.forEach(ramen => {
-        displayMenu(ramen)
-       
-        //click event listener on images
-        
+const ramenMenuDivElement = document.getElementById('ramen-menu')
+const detailImage = document.querySelector('.detail-image')
+const detailName = document.querySelector('.name') 
+const detailRestaurant = document.getElementsByClassName('restaurant')[0]
+const detailRating = document.getElementById('rating-display')
+const detailComment = document.getElementById('comment-display')
+const newRamenForm = document.getElementById('new-ramen')
+fetch('http://127.0.0.1:4000/ramens')
+    .then(resp => resp.json())
+    .then(ramenList => {
+        ramenList.forEach(ramen => {
+            displayImageInMenu(ramen)
         })
+        addNewRamen()
+    })  
+
+function displayImageInMenu(soup){
+    const ramenImgElement = document.createElement('img')
+    ramenImgElement.src = soup.image
+    ramenMenuDivElement.appendChild(ramenImgElement)
+
+    ramenImgElement.addEventListener('click', () => {
+        displayRamenDetail(soup)
+    })}
+
+function displayRamenDetail(soup){
+    detailImage.src = soup.image
+    detailName.textContent = soup.name
+    detailRestaurant.textContent = soup.restaurant
+    detailRating.textContent = soup.rating
+    detailComment.textContent = soup.comment}
+
+function addNewRamen(){
+    newRamenForm.addEventListener('submit', e => {
+        e.preventDefault()
+
+        let newRamenData = {
+        name: e.target[0].value,
+        restaurant: e.target[1].value,
+        image: e.target[2].value,
+        rating: e.target[3].value,
+        comment: e.target[4].value
+        }
+        displayImageInMenu(newRamenData)
+        newRamenForm.reset()
+    })}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// fetch('http://127.0.0.1:3000/ramens')
+// .then(resp => resp.json())
+// .then(ramenList => {
+    
+//     //1
+//     ramenList.forEach(ramen => {
+//         displayMenu(ramen)   ///made function b/c it's reused to add new ramen into menu list when new ramen form submitted
+       
+//         //click event listener on images
+        
+//         })
 
         
-        displayRamenDetail(ramenList[0])
+//         displayRamenDetail(ramenList[0])
 
 
-    })
-    //2
+//     })
+//     //2
 
     
-     const newRamenForm = document.getElementById('new-ramen')
-     newRamenForm.addEventListener('submit', e => {
-         e.preventDefault()
+//      const newRamenForm = document.getElementById('new-ramen')
+//      newRamenForm.addEventListener('submit', e => {
+//          e.preventDefault()
 
-         const newName = document.getElementById('new-name')
-         const newImage = document.getElementById('new-image')
-         const newRating = document.getElementById('new-rating')
-         const newComment = document.getElementById('new-comment')
+//          const newName = document.getElementById('new-name')
+//          const newImage = document.getElementById('new-image')
+//          const newRating = document.getElementById('new-rating')
+//          const newComment = document.getElementById('new-comment')
 
-         const newRamenObject = {
-             name: newName.value,
-             image: newImage.value,
-             rating: newRating.value,
-             comment: newComment.value
-         }
-         displayMenu(newRamenObject)
+//          const newRamenObject = {
+//              name: newName.value,
+//              image: newImage.value,
+//              rating: newRating.value,
+//              comment: newComment.value
+//          }
+//          displayMenu(newRamenObject)
+
          
          
-         
-     })
+//      })
 
 
 
@@ -48,30 +132,30 @@ fetch('http://127.0.0.1:3000/ramens')
 
 
 
-function displayRamenDetail(ramen){
-    const detailImage = document.querySelector('.detail-image')
-    const detailName = document.querySelector('.name')
-    const detailRestaurant = document.querySelector('.restaurant')
-    const detailRating = document.getElementById('rating-display')
-    const detailComment = document.getElementById('comment-display')
+// function displayRamenDetail(ramen){
+//     const detailImage = document.querySelector('.detail-image')
+//     const detailName = document.querySelector('.name')
+//     const detailRestaurant = document.querySelector('.restaurant')
+//     const detailRating = document.getElementById('rating-display')
+//     const detailComment = document.getElementById('comment-display')
 
-    detailImage.src = ramen.image
-    detailName.textContent = ramen.name
-    detailRestaurant.textContent = ramen.restaurant
-    detailRating.textContent = ramen.rating
-    detailComment.textContent = ramen.comment
-    }
+//     detailImage.src = ramen.image
+//     detailName.textContent = ramen.name
+//     detailRestaurant.textContent = ramen.restaurant
+//     detailRating.textContent = ramen.rating
+//     detailComment.textContent = ramen.comment
+//     }
 
-    function displayMenu(ramen){
-    const imgElement = document.createElement('img')
-    const ramenMenu = document.getElementById('ramen-menu')
-    imgElement.src = ramen.image
-    ramenMenu.appendChild(imgElement)
+//     function displayMenu(ramen){
+//     const imgElement = document.createElement('img')
+//     const ramenMenu = document.getElementById('ramen-menu')
+//     imgElement.src = ramen.image
+//     ramenMenu.appendChild(imgElement)
 
-    imgElement.addEventListener('click', e => {
-        displayRamenDetail(ramen)
-    })
-}
+//     imgElement.addEventListener('click', e => {
+//         displayRamenDetail(ramen)
+//     })
+// }
 
 
 
